@@ -1,0 +1,72 @@
+contacts = [
+    {
+        "id": "45ede875-62c5-4fd2-b709-da36deda4706",
+        "name": "Ana",
+        "last_name": "Gómez",
+        "phone": "+52 55 1234 5678",
+        "email": "ana.gomez@example.com",
+        "street": "Av. Reforma 123",
+        "city": "Ciudad de México",
+        "state": "CDMX",
+        "company": "TechMex",
+        "position": "Ingeniera de Software",
+        "notes": "Cliente potencial para Q3.",
+        "birthday": "1995-06-14"
+    },
+    {
+        "id": "4df29c96-fd28-4ff6-b77c-749a085461c2",
+        "name": "Carlos",
+        "last_name": "Ramírez",
+        "phone": "+52 33 7654 3210",
+        "email": "c.ramirez@empresa.com",
+        "street": "Calle Juárez 45",
+        "city": "Guadalajara",
+        "state": "Jalisco",
+        "company": "Consultora Integral",
+        "position": "Gerente de Proyectos",
+        "notes": "Prefiere contacto por email.",
+        "birthday": "1987-09-03"
+    },
+    {
+        "id": "52624afa-031f-49b5-8b7e-07f9559eef62",
+        "name": "Lucía",
+        "last_name": "Fernández",
+        "phone": "+52 81 9876 5432",
+        "email": "luciaf@creative.mx",
+        "street": "Av. Constitución 987",
+        "city": "Monterrey",
+        "state": "Nuevo León",
+        "company": "Creative Studio",
+        "position": "Diseñadora Gráfica",
+        "notes": "Diseñó el branding de la empresa.",
+        "birthday": "1990-01-22"
+    },
+    {
+        "id": "6adfd1b5-1e6e-4868-8103-59594a4c020f",
+        "name": "Jorge",
+        "last_name": "López",
+        "phone": "+52 55 8765 4321",
+        "email": "jorge.lopez@negocios.mx",
+        "street": "Insurgentes Sur 2020",
+        "city": "Ciudad de México",
+        "state": "CDMX",
+        "company": "Negocios y Más",
+        "position": "Analista Financiero",
+        "notes": "Interesado en automatización.",
+        "birthday": "1985-04-11"
+    },
+    {
+        "id": "f730ff81-5c1f-42dd-ac2d-efff18b53854",
+        "name": "María",
+        "last_name": "Torres",
+        "phone": "+52 477 112 3344",
+        "email": "maria.torres@greenlabs.mx",
+        "street": "Blvd. Campestre 300",
+        "city": "León",
+        "state": "Guanajuato",
+        "company": "GreenLabs",
+        "position": "Bióloga de Campo",
+        "notes": "Requiere factura electrónica.",
+        "birthday": "1993-11-27"
+    }
+]
