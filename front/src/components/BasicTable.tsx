@@ -18,6 +18,7 @@ import { fetchContacts } from '../state/contacts/contactsSlice';
 export default function BasicTable() {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
   const dispatch = useDispatch<AppDispatch>();
+  
 
   useEffect(() => {
     dispatch(fetchContacts());

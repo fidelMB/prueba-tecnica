@@ -4,17 +4,50 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import type { Contact } from '../state/contacts/contactsSlice';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import type { AppDispatch } from '../state/store';
+import { addContact } from '../state/contacts/contactsSlice';
+
+const back_url = import.meta.env.VITE_BACK_URL
 
 interface FormDialogProps {
   edit: boolean;
   contact?: Contact;
 }
 
+type FormFields = {
+    birthday: string;
+    city: string;
+    company: string;
+    email: string;
+    last_name: string;
+    name: string;
+    notes: string;
+    phone: string;
+    position: string;
+    state: string;
+    street: string;
+}
+
 export default function FormDialog( {edit, contact} : FormDialogProps ) {
   const [open, setOpen] = React.useState(false);
+  const { register, handleSubmit, reset } = useForm<FormFields>();
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  async function addContactBack(contact : FormFields) {
+  try {
+        const response = await axios.post(back_url + '/api/contacts/', contact);
+        dispatch(addContact(response.data))
+
+  } catch (error) {
+      console.error('Error:', error);
+  }
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -35,14 +68,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
         slotProps={{
           paper: {
             component: 'form',
-            onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-              event.preventDefault();
-              const formData = new FormData(event.currentTarget);
-              const formJson = Object.fromEntries((formData as any).entries());
-              const email = formJson.email;
-              console.log(email);
+            onSubmit: handleSubmit((data) => {
+              edit ? '' : addContactBack(data);
+              reset();
               handleClose();
-            },
+            }),
           },
         }}
       >
@@ -53,11 +83,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="name"
-            name="name"
             label="Nombre"
             type="name"
             variant="standard"
             sx={{m : 2}}
+            {...register("name")}
           >
             {contact?.name}
           </TextField>
@@ -66,11 +96,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="last_name"
-            name="last_name"
             label="Apellido"
             type="last_name"
             variant="standard"
             sx={{m : 2}}
+            {...register("last_name")}            
           >
             {contact?.last_name}
           </TextField>
@@ -79,11 +109,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="phone"
-            name="phone"
             label="Teléfono"
             type="phone"
             variant="standard"
             sx={{m : 2}}
+            {...register("phone")}
           >
             {contact?.phone}
           </TextField>
@@ -92,11 +122,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="email"
-            name="email"
             label="Correo electrónico"
             type="email"
             variant="standard"
             sx={{m : 2}}
+            {...register("email")}
           >
             {contact?.email}
           </TextField>
@@ -105,11 +135,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="street"
-            name="street"
             label="Calle"
             type="street"
             variant="standard"
             sx={{m : 2}}
+            {...register("street")}
           >
             {contact?.street}
           </TextField>
@@ -118,11 +148,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="city"
-            name="city"
             label="Ciudad"
             type="city"
             variant="standard"
             sx={{m : 2}}
+            {...register("city")}
           >
             {contact?.city}
           </TextField>
@@ -130,12 +160,12 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             autoFocus
             required
             margin="dense"
-            id="state"
-            name="state"
+            id="state"            
             label="Estado"
             type="state"
             variant="standard"
             sx={{m : 2}}
+            {...register("state")}
           >
             {contact?.state}
           </TextField>
@@ -144,11 +174,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="company"
-            name="company"
             label="Empresa"
             type="company"
             variant="standard"
             sx={{m : 2}}
+            {...register("company")}
           >
             {contact?.company}
           </TextField>
@@ -157,11 +187,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="position"
-            name="position"
             label="Cargo"
             type="position"
             variant="standard"
             sx={{m : 2}}
+            {...register("position")}
           >
             {contact?.position}
           </TextField>
@@ -170,11 +200,11 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             required
             margin="dense"
             id="birthday"
-            name="birthday"
             label="Cumpleaños"
             type="birthday"
             variant="standard"
             sx={{m : 2}}
+            {...register("birthday")}            
           >
             {contact?.birthday}
           </TextField>
@@ -182,12 +212,12 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             autoFocus
             required
             margin="dense"
-            id="notes"
-            name="notes"
+            id="notes"            
             label="Notas"
             type="notes"
             variant="standard"
             sx={{m : 2}}
+            {...register("notes")}            
           >
             {contact?.notes}
           </TextField>

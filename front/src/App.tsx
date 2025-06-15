@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     <BasicTable/>
-    <FormDialog></FormDialog>
+    <FormDialog edit = {false}></FormDialog>
     </>
   )
 }
