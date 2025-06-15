@@ -3,7 +3,7 @@ import axios from "axios";
 
 const back_url = import.meta.env.VITE_BACK_URL
 
-interface Contact {
+export interface Contact {
     birthday: string;
     city: string;
     company: string;

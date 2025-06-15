@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import BasicTable from './components/BasicTable'
 import './App.css'
+import FormDialog from './components/FormDialog'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -8,6 +9,7 @@ function App() {
   return (
     <>
     <BasicTable/>
+    <FormDialog></FormDialog>
     </>
   )
 }
