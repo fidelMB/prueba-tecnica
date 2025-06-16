@@ -10,7 +10,9 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '../state/store';
-import { addContact } from '../state/contacts/contactsSlice';
+import { addContact, editContact } from '../state/contacts/contactsSlice';
+import EditIcon from '@mui/icons-material/Edit';
+import IconButton from '@mui/material/IconButton';
 
 const back_url = import.meta.env.VITE_BACK_URL
 
@@ -19,7 +21,7 @@ interface FormDialogProps {
   contact?: Contact;
 }
 
-type FormFields = {
+export type FormFields = {
     birthday: string;
     city: string;
     company: string;
@@ -39,16 +41,6 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  async function addContactBack(contact : FormFields) {
-  try {
-        const response = await axios.post(back_url + '/api/contacts/', contact);
-        dispatch(addContact(response.data))
-
-  } catch (error) {
-      console.error('Error:', error);
-  }
-  };
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -59,9 +51,19 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
 
   return (
     <React.Fragment>
-      <Button variant="contained" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
+      {edit ?  
+      (
+        <IconButton onClick={handleClickOpen}>
+          <EditIcon/>
+        </IconButton>        
+      )
+      : 
+      (
+        <Button variant="contained" onClick={handleClickOpen} sx={{m:2}}>
+          Añadir contacto
+        </Button>
+      )
+      }
       <Dialog
         open={open}
         onClose={handleClose}
@@ -69,14 +71,14 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
           paper: {
             component: 'form',
             onSubmit: handleSubmit((data) => {
-              edit ? '' : addContactBack(data);
+              contact ? (dispatch(editContact({id: contact.id, updatedContact: data}))) : dispatch(addContact({newContact: data}));
               reset();
               handleClose();
             }),
           },
         }}
       >
-        <DialogTitle>{edit ? 'Edit Contact' : 'Add Contact'}</DialogTitle>
+        <DialogTitle>{edit ? 'Editar Contacto' : 'Añadir Contact'}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -88,9 +90,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("name")}
-          >
-            {contact?.name}
-          </TextField>
+            defaultValue={contact?.name}
+          />
           <TextField
             autoFocus
             required
@@ -100,10 +101,9 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             type="last_name"
             variant="standard"
             sx={{m : 2}}
-            {...register("last_name")}            
-          >
-            {contact?.last_name}
-          </TextField>
+            {...register("last_name")}
+            defaultValue={contact?.last_name}
+          />
           <TextField
             autoFocus
             required
@@ -114,9 +114,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("phone")}
-          >
-            {contact?.phone}
-          </TextField>
+            defaultValue={contact?.phone}
+          />
           <TextField
             autoFocus
             required
@@ -127,9 +126,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("email")}
-          >
-            {contact?.email}
-          </TextField>
+            defaultValue={contact?.email}
+          />
           <TextField
             autoFocus
             required
@@ -140,9 +138,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("street")}
-          >
-            {contact?.street}
-          </TextField>
+            defaultValue={contact?.street}
+          />
           <TextField
             autoFocus
             required
@@ -153,9 +150,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("city")}
-          >
-            {contact?.city}
-          </TextField>
+            defaultValue={contact?.city}
+          />
           <TextField
             autoFocus
             required
@@ -166,9 +162,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("state")}
-          >
-            {contact?.state}
-          </TextField>
+            defaultValue={contact?.state}
+          />
           <TextField
             autoFocus
             required
@@ -179,9 +174,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("company")}
-          >
-            {contact?.company}
-          </TextField>
+            defaultValue={contact?.company}
+          />
           <TextField
             autoFocus
             required
@@ -192,9 +186,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("position")}
-          >
-            {contact?.position}
-          </TextField>
+            defaultValue={contact?.position}
+          />
           <TextField
             autoFocus
             required
@@ -204,10 +197,9 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             type="birthday"
             variant="standard"
             sx={{m : 2}}
-            {...register("birthday")}            
-          >
-            {contact?.birthday}
-          </TextField>
+            {...register("birthday")}   
+            defaultValue={contact?.birthday}         
+          />
           <TextField
             autoFocus
             required
@@ -218,9 +210,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
             variant="standard"
             sx={{m : 2}}
             {...register("notes")}            
-          >
-            {contact?.notes}
-          </TextField>
+            defaultValue={contact?.notes}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

@@ -9,16 +9,16 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../state/store';
 import { useEffect } from 'react';
 import { fetchContacts } from '../state/contacts/contactsSlice';
+import FormDialog from './FormDialog';
 
 export default function BasicTable() {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
   const dispatch = useDispatch<AppDispatch>();
-  
+
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -60,9 +60,7 @@ export default function BasicTable() {
                 </Button>
               </TableCell>
               <TableCell align="right">
-                <IconButton>
-                  <EditIcon/>
-                </IconButton>
+                <FormDialog edit={true} contact={row}/>
               </TableCell>
               <TableCell align="right">
                 <IconButton>

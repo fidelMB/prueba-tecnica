@@ -2,14 +2,16 @@ import { useState } from 'react'
 import BasicTable from './components/BasicTable'
 import './App.css'
 import FormDialog from './components/FormDialog'
+import { Typography } from '@mui/material'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-    <BasicTable/>
+    <Typography variant="h2" gutterBottom>
+      Libreta de direcciones
+    </Typography>
     <FormDialog edit = {false}></FormDialog>
+    <BasicTable/>
     </>
   )
 }

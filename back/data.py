@@ -1,4 +1,9 @@
-contacts = [
+import json
+from typing import List
+
+CONTACTS_FILE = "contacts.json"
+
+DEFAULT_CONTACTS = [
     {
         "id": "45ede875-62c5-4fd2-b709-da36deda4706",
         "name": "Ana",
@@ -58,15 +63,27 @@ contacts = [
     {
         "id": "f730ff81-5c1f-42dd-ac2d-efff18b53854",
         "name": "María",
-        "last_name": "Torres",
+        "last_name": "Juárez",
         "phone": "+52 477 112 3344",
         "email": "maria.torres@greenlabs.mx",
         "street": "Blvd. Campestre 300",
-        "city": "León",
-        "state": "Guanajuato",
+        "city": "Santa Catarina",
+        "state": "Nuevo León",
         "company": "GreenLabs",
         "position": "Bióloga de Campo",
         "notes": "Requiere factura electrónica.",
         "birthday": "1993-11-27"
     }
 ]
+
+def reset_contacts_file():
+    with open("contacts.json", "w", encoding="utf-8") as f:
+        json.dump(DEFAULT_CONTACTS, f, indent=2, ensure_ascii=False)
+
+def load_contacts() -> List[dict]:
+    with open(CONTACTS_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_contacts(contacts: List[dict]):
+    with open(CONTACTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(contacts, f, indent=2, ensure_ascii=False)
