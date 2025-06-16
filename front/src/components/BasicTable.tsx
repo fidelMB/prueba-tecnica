@@ -9,10 +9,14 @@ import Paper from '@mui/material/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../state/store';
 import { useEffect } from 'react';
-import { fetchContacts } from '../state/contacts/contactsSlice';
+import { fetchContacts, favoriteContact } from '../state/contacts/contactsSlice';
 import FormDialog from './FormDialog';
 import DeleteButton from './DeleteButton';
 import ContactInfoModal from './ContactInfoModal';
+import Star from '@mui/icons-material/Star'; 
+import StarBorder from '@mui/icons-material/StarBorder'; 
+import { IconButton } from '@mui/material';
+
 
 export default function BasicTable() {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
@@ -57,6 +61,11 @@ export default function BasicTable() {
               </TableCell>
               <TableCell align="right">
                 <FormDialog edit={true} contact={row}/>
+              </TableCell>
+              <TableCell align="right">
+                <IconButton onClick={() => dispatch(favoriteContact({contact : row}))}>
+                  {row.favorite === "true" ? <Star/> : <StarBorder/>}
+                </IconButton>
               </TableCell>
               <TableCell align="right">
                 <DeleteButton id={row.id}/>

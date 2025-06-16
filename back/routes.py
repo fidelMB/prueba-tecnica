@@ -29,7 +29,8 @@ def add_contact():
         "company": request_data["company"],
         "position": request_data["position"],
         "notes": request_data["notes"],
-        "birthday": request_data["birthday"]
+        "birthday": request_data["birthday"],
+        "favorite": "false"
     }
 
     contacts.append(new_contact)
@@ -70,7 +71,8 @@ def update_contact(id):
                 "company": request_data["company"],
                 "position": request_data["position"],
                 "notes": request_data["notes"],
-                "birthday": request_data["birthday"]
+                "birthday": request_data["birthday"],
+                "favorite": contact["favorite"]
                 }
             save_contacts(contacts)
             
@@ -90,3 +92,41 @@ def delete_contact(id):
             return jsonify({'message':'Contact deleted successfully'}), 200
     
     return jsonify({'error':'delete_contact controller server error, contact not found'}), 404
+
+# /api/contacts//favorite/<id>
+
+# Make a contact a favorite or unfavorite
+@contacts_bp.route('/favorite/<id>', methods = ['PATCH'])
+def favorite_contact(id):
+    contacts = load_contacts()
+
+    for i, contact in enumerate(contacts):
+        if contact['id'] == id:
+            request_data = request.get_json()
+
+
+            if request_data["favorite"] == "true":
+                new_state = "false"
+            else:
+                new_state = "true"
+
+            contacts[i] = {
+                "id": id,
+                "name": contact["name"],
+                "last_name": contact["last_name"],
+                "phone": contact["phone"],
+                "email": contact["email"],
+                "street": contact["street"],
+                "city": contact["city"],
+                "state": contact["state"],
+                "company": contact["company"],
+                "position": contact["position"],
+                "notes": contact["notes"],
+                "birthday": contact["birthday"],
+                "favorite": new_state
+                }
+            save_contacts(contacts)
+            
+            return jsonify(contacts[i]), 200
+
+    return jsonify({'error':'favorite_contact controller server error, contact not found'}), 404

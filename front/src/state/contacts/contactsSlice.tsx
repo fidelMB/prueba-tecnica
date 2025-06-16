@@ -17,6 +17,7 @@ export interface Contact {
     position: string;
     state: string;
     street: string;
+    favorite: string;
 }
 
 interface ContactsState {
@@ -49,6 +50,12 @@ const contactsSlice = createSlice({
                 const index = state.contacts.findIndex(c => c.id === action.payload);
                 if (index !== -1) {
                     state.contacts.splice(index, 1);
+                }
+            })
+            .addCase(favoriteContact.fulfilled, (state, action: PayloadAction<Contact>) => {
+                const index = state.contacts.findIndex(c => c.id === action.payload.id);
+                if (index !== -1) {
+                    state.contacts[index] = action.payload;
                 }
             });
     }
@@ -86,6 +93,12 @@ export const deleteContact = createAsyncThunk<string, {id: string}>(
   }
 );
 
-// export const { addContact } = contactsSlice.actions;
+export const favoriteContact = createAsyncThunk<Contact, {contact: Contact}>(
+  'contacts/favoriteContact',
+  async ( {contact} ) => {
+    const response = await axios.patch(back_url + '/api/contacts/favorite/' + contact.id, contact);
+    return response.data;
+  }
+);
 
 export default contactsSlice.reducer;

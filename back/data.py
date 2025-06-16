@@ -16,7 +16,8 @@ DEFAULT_CONTACTS = [
         "company": "TechMex",
         "position": "Ingeniera de Software",
         "notes": "Cliente potencial para Q3.",
-        "birthday": "1995-06-14"
+        "birthday": "1995-06-14",
+        "favorite": "false"
     },
     {
         "id": "4df29c96-fd28-4ff6-b77c-749a085461c2",
@@ -30,7 +31,8 @@ DEFAULT_CONTACTS = [
         "company": "Consultora Integral",
         "position": "Gerente de Proyectos",
         "notes": "Prefiere contacto por email.",
-        "birthday": "1987-09-03"
+        "birthday": "1987-09-03",
+        "favorite": "false"
     },
     {
         "id": "52624afa-031f-49b5-8b7e-07f9559eef62",
@@ -44,7 +46,8 @@ DEFAULT_CONTACTS = [
         "company": "Creative Studio",
         "position": "Diseñadora Gráfica",
         "notes": "Diseñó el branding de la empresa.",
-        "birthday": "1990-01-22"
+        "birthday": "1990-01-22",
+        "favorite": "false"
     },
     {
         "id": "6adfd1b5-1e6e-4868-8103-59594a4c020f",
@@ -58,7 +61,8 @@ DEFAULT_CONTACTS = [
         "company": "Negocios y Más",
         "position": "Analista Financiero",
         "notes": "Interesado en automatización.",
-        "birthday": "1985-04-11"
+        "birthday": "1985-04-11",
+        "favorite": "false"
     },
     {
         "id": "f730ff81-5c1f-42dd-ac2d-efff18b53854",
@@ -72,7 +76,8 @@ DEFAULT_CONTACTS = [
         "company": "GreenLabs",
         "position": "Bióloga de Campo",
         "notes": "Requiere factura electrónica.",
-        "birthday": "1993-11-27"
+        "birthday": "1993-11-27",
+        "favorite": "false"
     }
 ]
 
