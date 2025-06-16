@@ -1,19 +1,5 @@
 [
   {
-    "id": "45ede875-62c5-4fd2-b709-da36deda4706",
-    "name": "Ana",
-    "last_name": "Gómez",
-    "phone": "+52 55 1234 5678",
-    "email": "ana.gomez@example.com",
-    "street": "Av. Reforma 123",
-    "city": "Ciudad de México",
-    "state": "CDMX",
-    "company": "TechMex",
-    "position": "Ingeniera de Software",
-    "notes": "Cliente potencial para Q3.",
-    "birthday": "1995-06-14"
-  },
-  {
     "id": "4df29c96-fd28-4ff6-b77c-749a085461c2",
     "name": "Carlos",
     "last_name": "Ramírez",

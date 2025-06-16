@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import BasicTable from './components/BasicTable'
 import './App.css'
 import FormDialog from './components/FormDialog'

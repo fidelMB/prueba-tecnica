@@ -7,14 +7,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import type { Contact } from '../state/contacts/contactsSlice';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import type { AppDispatch } from '../state/store';
 import { addContact, editContact } from '../state/contacts/contactsSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
-
-const back_url = import.meta.env.VITE_BACK_URL
 
 interface FormDialogProps {
   edit: boolean;
