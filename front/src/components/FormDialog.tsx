@@ -75,7 +75,7 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
           },
         }}
       >
-        <DialogTitle>{edit ? 'Editar Contacto' : 'Añadir Contact'}</DialogTitle>
+        <DialogTitle>{edit ? 'Editar Contacto' : 'Añadir Contacto'}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -211,8 +211,8 @@ export default function FormDialog( {edit, contact} : FormDialogProps ) {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">{edit ? 'Save Changes' : 'Confirm'}</Button>
+          <Button onClick={handleClose}>Cancelar</Button>
+          <Button type="submit" variant='contained'>{edit ? 'Guardar Cambios' : 'Añadir Contacto'}</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

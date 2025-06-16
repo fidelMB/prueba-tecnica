@@ -2,7 +2,7 @@
   {
     "id": "4df29c96-fd28-4ff6-b77c-749a085461c2",
     "name": "Carlos",
-    "last_name": "Ramírez",
+    "last_name": "Peréz",
     "phone": "+52 33 7654 3210",
     "email": "c.ramirez@empresa.com",
     "street": "Calle Juárez 45",
@@ -24,7 +24,7 @@
     "state": "Nuevo León",
     "company": "Creative Studio",
     "position": "Diseñadora Gráfica",
-    "notes": "Diseñó el branding de la empresa.",
+    "notes": "hole",
     "birthday": "1990-01-22"
   },
   {
@@ -36,7 +36,7 @@
     "street": "Insurgentes Sur 2020",
     "city": "Ciudad de México",
     "state": "CDMX",
-    "company": "Negocios y Más",
+    "company": "infosys",
     "position": "Analista Financiero",
     "notes": "Interesado en automatización.",
     "birthday": "1985-04-11"
@@ -52,7 +52,7 @@
     "state": "Nuevo León",
     "company": "GreenLabs",
     "position": "Bióloga de Campo",
-    "notes": "Requiere factura electrónica.",
+    "notes": "nose",
     "birthday": "1993-11-27"
   }
 ]

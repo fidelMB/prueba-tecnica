@@ -30,11 +30,6 @@ const initialState: ContactsState = {
 const contactsSlice = createSlice({
     name: "contacts",
     initialState,
-    // reducers: {
-    //     addContact: (state, action: PayloadAction<Contact>) => {
-    //         state.contacts.push(action.payload)
-    //     }
-    // },
     reducers: {},
     extraReducers: (builder) => {
         builder

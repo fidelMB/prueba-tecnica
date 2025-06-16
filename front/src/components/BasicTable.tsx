@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { fetchContacts } from '../state/contacts/contactsSlice';
 import FormDialog from './FormDialog';
 import DeleteButton from './DeleteButton';
+import ContactInfoModal from './ContactInfoModal';
 
 export default function BasicTable() {
   const contacts = useSelector((state: RootState) => state.contacts.contacts);
@@ -53,9 +54,7 @@ export default function BasicTable() {
               <TableCell align="right">{row.email}</TableCell>
               <TableCell align="right">{row.state}</TableCell>
               <TableCell align="right">
-                <Button variant="contained">
-                  Más
-                </Button>
+                <ContactInfoModal contact={row}/>
               </TableCell>
               <TableCell align="right">
                 <FormDialog edit={true} contact={row}/>
